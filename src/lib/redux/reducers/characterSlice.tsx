@@ -6,23 +6,26 @@ interface CharacterState {
   searchedCharacters: CharacterTypo[];
   selectedCharacters: CharacterTypo[];
   loading: boolean;
+  query: string;
   error: string | null;
 }
 
 const initialState: CharacterState = {
   searchedCharacters: [],
   selectedCharacters: [],
+  query: "",
   loading: false,
   error: null,
 };
 
+//fake delay for show loading :)
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const fetchCharacters = createAsyncThunk(
   "characters/fetchCharacters",
   async (name: string, { rejectWithValue }) => {
     try {
-      await delay(500);
+      await delay(300);
       const characters = await searchCharacters(name);
       return characters;
     } catch (error) {
@@ -38,6 +41,9 @@ const characterSlice = createSlice({
   name: "characters",
   initialState,
   reducers: {
+    setQuery: (state, action: PayloadAction<string>) => {
+      state.query = action.payload;
+    },
     toggleCharacterSelection: (state, action: PayloadAction<CharacterTypo>) => {
       const isSelected = state.selectedCharacters.some(
         (char) => char.id === action.payload.id
@@ -68,5 +74,5 @@ const characterSlice = createSlice({
   },
 });
 
-export const { toggleCharacterSelection } = characterSlice.actions;
+export const { toggleCharacterSelection, setQuery } = characterSlice.actions;
 export default characterSlice.reducer;

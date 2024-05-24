@@ -1,15 +1,15 @@
 .search-section {
   width: 600px;
-  margin-top: 50px;
+  margin: auto;
   border: 2px solid #333;
   padding: 10px;
   background-color: #fff;
+
   .multiSelected {
     display: flex;
     flex-wrap: wrap;
     background-color: #e6e5e5;
     gap: 5px;
-    margin-bottom: 20px;
     border: 2px solid #333;
     padding: 20px 35px 20px 10px;
     position: relative;
@@ -72,6 +72,7 @@
   background-color: #e6e5e5;
   border: 2px solid #333;
   height: 300px;
+  margin-top: 20px;
   overflow-y: scroll;
   input[type="checkbox"] {
     width: 20px;

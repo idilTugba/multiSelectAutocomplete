@@ -1,0 +1,114 @@
+.search-section {
+  width: 600px;
+  margin-top: 50px;
+  border: 2px solid #333;
+  padding: 10px;
+  background-color: #fff;
+  .multiSelected {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #e6e5e5;
+    gap: 5px;
+    margin-bottom: 20px;
+    border: 2px solid #333;
+    padding: 20px 35px 20px 10px;
+    position: relative;
+
+    &__item {
+      background-color: #b2fbef;
+      border-radius: 10px;
+      border: 1px solid #333;
+      padding: 5px 8px 5px 10px;
+      display: flex;
+      font-size: 14px;
+      align-items: center;
+      font-weight: bolder;
+    }
+
+    &__button {
+      margin-left: 5px;
+      background: white;
+      border: 2px solid #cbcbcb;
+      font-size: 19px;
+      display: flex;
+      width: 22px;
+      cursor: pointer;
+      border-radius: 3px;
+      color: red;
+      height: 22px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    input {
+      border: none;
+      background: none;
+      font-size: larger;
+      flex-grow: 1;
+      flex-shrink: 1;
+      padding: 5px 0px;
+      min-width: 100px;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .toggleDropdown {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%) rotate(0);
+      cursor: pointer;
+      line-height: 1;
+      font-size: 24px;
+      font-weight: bolder;
+      &.close {
+        transform: translateY(-50%) rotate(45deg);
+      }
+    }
+  }
+}
+.dropdown {
+  background-color: #e6e5e5;
+  border: 2px solid #333;
+  height: 300px;
+  overflow-y: scroll;
+  input[type="checkbox"] {
+    width: 20px;
+    border: 2px solid #333;
+    height: 20px;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+
+    &__img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      margin-right: 10px;
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      span {
+        font-size: 18px;
+      }
+      div {
+        margin-top: 5px;
+      }
+    }
+  }
+  li {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #333;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

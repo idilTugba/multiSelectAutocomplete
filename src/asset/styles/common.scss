@@ -1,0 +1,58 @@
+body,
+html,
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+#app {
+  height: 100%;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+.error {
+  color: red;
+}
+
+.selected {
+  background-color: black;
+}
+
+.container {
+  margin: auto;
+  width: 960px;
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+  }
+}

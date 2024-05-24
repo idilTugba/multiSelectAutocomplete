@@ -1,0 +1,11 @@
+.multiSelect {
+  padding: 0;
+  font-size: 20px;
+  color: red;
+  &__searchContent {
+    display: block;
+  }
+  span {
+    color: black;
+  }
+}

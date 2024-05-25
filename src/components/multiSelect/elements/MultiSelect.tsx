@@ -153,7 +153,7 @@ const MultiSelect = () => {
         ))}
         <input
           type="text"
-          placeholder="Select Character..."
+          placeholder="Search Character..."
           value={query}
           ref={inputRef}
           onChange={(e) => dispatch(setQuery(e.target.value))}
@@ -166,10 +166,10 @@ const MultiSelect = () => {
           +
         </span>
       </div>
-      {loading && <LoadingSpinner />}
       {error && <div className="error">{error}</div>}
-      {dropdownPosition && !loading && !error && (
+      {dropdownPosition && !error && (
         <ul tabIndex={2} className="dropdown" ref={dropdownRef}>
+          {loading && <LoadingSpinner />}
           {searchedCharacters.map((char, index) => {
             return (
               <DropdownItem

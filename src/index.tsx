@@ -1,15 +1,17 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import Home from "@pages/Home";
 
 import "./asset/styles/app.scss";
 import { Provider } from "react-redux";
 import store from "./lib/redux/Store";
+import { MultiSelectComponent } from "@components/multiSelect";
 
 function App() {
   return (
     <Provider store={store}>
-      <Home />
+      <div className="container">
+        <MultiSelectComponent />
+      </div>
     </Provider>
   );
 }

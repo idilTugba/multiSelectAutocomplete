@@ -13,7 +13,7 @@ export const searchCharacters = async (
   );
 
   if (!response.ok) {
-    throw new Error("Failed to fetch characters");
+    throw new Error("Ups! There is no such character.");
   }
 
   const data = await response.json();

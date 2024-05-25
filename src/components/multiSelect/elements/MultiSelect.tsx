@@ -35,10 +35,12 @@ const MultiSelect = () => {
   // Handle keyword elements
   // we use the lenght of selected Tags to find current tag & Search Input
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+  const [dropdownIndex, setDropdownIndex] = useState<number>(0);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const dropdownRef = useRef<HTMLUListElement | null>(null);
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    console.log(event.key);
+    // console.log(event.key);
     // Navigate over with left right to multi select and search area
     // if on the input
     if (event.target === inputRef.current) {
@@ -82,6 +84,39 @@ const MultiSelect = () => {
           break;
       }
     }
+
+    if (event.target === dropdownRef.current) {
+      console.log("dropdown area");
+      const dropdownItems = dropdownRef.current.querySelectorAll("li");
+      switch (event.key) {
+        // navigation with top & bottom arrow to dropdown area
+        case "ArrowDown":
+          if (dropdownIndex < dropdownItems.length - 1) {
+            console.log(dropdownIndex);
+            console.log(dropdownRef.current.children[dropdownIndex]);
+            setDropdownIndex((prevIndex) => prevIndex + 1);
+          }
+          break;
+        case "ArrowUp":
+          if (dropdownIndex > 0) {
+            setDropdownIndex((prevIndex) => prevIndex - 1);
+          }
+          break;
+        case "Enter":
+          console.log("Enter");
+          if (dropdownIndex < dropdownItems.length) {
+            const charId = dropdownItems[dropdownIndex].getAttribute("data-id");
+            console.log(charId);
+            console.log(searchedCharacters);
+            const char = searchedCharacters.find((item) => item.id === charId);
+            console.log(char);
+            if (char) {
+              handleCheckbox(char);
+            }
+          }
+          break;
+      }
+    }
   };
 
   useEffect(() => {
@@ -92,6 +127,17 @@ const MultiSelect = () => {
       chipElement?.focus();
     }
   }, [selectedIndex]);
+
+  useEffect(() => {
+    if (dropdownRef.current && dropdownIndex >= 0) {
+      const selectedItem = dropdownRef.current.children[
+        dropdownIndex
+      ] as HTMLElement;
+      if (selectedItem) {
+        selectedItem.scrollIntoView({ block: "nearest" });
+      }
+    }
+  }, [dropdownIndex]);
 
   return (
     <div className="search-section" onKeyDown={handleKeyDown}>
@@ -123,11 +169,13 @@ const MultiSelect = () => {
       {loading && <LoadingSpinner />}
       {error && <div className="error">{error}</div>}
       {dropdownPosition && !loading && !error && (
-        <ul tabIndex={2} className="dropdown">
+        <ul tabIndex={2} className="dropdown" ref={dropdownRef}>
           {searchedCharacters.map((char, index) => {
             return (
               <DropdownItem
                 key={char.id}
+                index={index}
+                dropdownIndex={dropdownIndex}
                 char={char}
                 handleChange={handleCheckbox}
                 isSelected={selectedCharacters.some(

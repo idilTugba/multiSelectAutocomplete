@@ -4,12 +4,16 @@ import { useAppSelector } from "@lib/redux/Hooks";
 
 interface DropdownItemType {
   char: CharacterTypo;
+  index: number;
+  dropdownIndex: number;
   handleChange: (char: CharacterTypo) => void;
   isSelected: boolean;
 }
 
 const DropdownItem: React.FC<DropdownItemType> = ({
   char,
+  index,
+  dropdownIndex,
   handleChange,
   isSelected,
 }) => {
@@ -20,7 +24,12 @@ const DropdownItem: React.FC<DropdownItemType> = ({
     (match) => `<strong>${match}</strong>`
   );
   return (
-    <li tabIndex={-1} key={char.id}>
+    <li
+      className={`${dropdownIndex === index ? "selected" : ""}`}
+      tabIndex={-1}
+      data-id={char.id}
+      key={char.id}
+    >
       <input
         tabIndex={-1}
         type="checkbox"

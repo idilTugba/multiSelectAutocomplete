@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { CharacterTypo } from "@api/searchCharacters";
 import { useAppSelector } from "@lib/redux/Hooks";
 
@@ -18,7 +18,6 @@ const DropdownItem: React.FC<DropdownItemType> = ({
   isSelected,
 }) => {
   const { query } = useAppSelector((state) => state.characters);
-
   const highlightedName = char.name.replace(
     new RegExp(query, "gi"),
     (match) => `<strong>${match}</strong>`
@@ -47,4 +46,4 @@ const DropdownItem: React.FC<DropdownItemType> = ({
   );
 };
 
-export default DropdownItem;
+export default memo(DropdownItem);

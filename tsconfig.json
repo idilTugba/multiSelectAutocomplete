@@ -20,7 +20,8 @@
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
       "@api/*": ["api/*"],
-      "@lib/*": ["lib/*"]
+      "@lib/*": ["lib/*"],
+      "@hooks/*": ["hooks/*"]
     },
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },

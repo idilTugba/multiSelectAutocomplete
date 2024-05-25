@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { CharacterTypo } from "@api/searchCharacters";
 
 interface SelectedTagsType {
@@ -23,6 +23,7 @@ const SelectedTags: React.FC<SelectedTagsType> = ({
       >
         {char.name}
         <button
+          tabIndex={-1}
           className="multiSelected__button"
           onClick={() => handleChange(char)}
         >
@@ -33,4 +34,4 @@ const SelectedTags: React.FC<SelectedTagsType> = ({
   );
 };
 
-export default SelectedTags;
+export default memo(SelectedTags);

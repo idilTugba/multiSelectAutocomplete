@@ -92,7 +92,6 @@ const MultiSelect = () => {
         // navigation with top & bottom arrow to dropdown area
         case "ArrowDown":
           if (dropdownIndex < dropdownItems.length - 1) {
-            console.log(dropdownIndex);
             console.log(dropdownRef.current.children[dropdownIndex]);
             setDropdownIndex((prevIndex) => prevIndex + 1);
           }
@@ -106,12 +105,14 @@ const MultiSelect = () => {
           console.log("Enter");
           if (dropdownIndex < dropdownItems.length) {
             const charId = dropdownItems[dropdownIndex].getAttribute("data-id");
-            console.log(charId);
-            console.log(searchedCharacters);
-            const char = searchedCharacters.find((item) => item.id === charId);
-            console.log(char);
-            if (char) {
-              handleCheckbox(char);
+            // The data-id is a string value
+            if (charId) {
+              const char = searchedCharacters.find(
+                (item) => item.id.toString() === charId
+              );
+              if (char) {
+                handleCheckbox(char);
+              }
             }
           }
           break;
@@ -168,7 +169,7 @@ const MultiSelect = () => {
       </div>
       {error && <div className="error">{error}</div>}
       {dropdownPosition && !error && (
-        <ul tabIndex={2} className="dropdown" ref={dropdownRef}>
+        <ul tabIndex={0} className="dropdown" ref={dropdownRef}>
           {loading && <LoadingSpinner />}
           {searchedCharacters.map((char, index) => {
             return (
